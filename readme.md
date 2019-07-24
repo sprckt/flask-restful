@@ -1,4 +1,4 @@
-# Revolut Exercise 1
+# Exercise 1
 
 The nest.py script will take a flat JSON array and nest contents as specified through command line arguments.
 The order of the command line arguments will stipulate the level that each attribute shall take up
