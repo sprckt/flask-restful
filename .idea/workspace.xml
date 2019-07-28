@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a492d182-89c8-4610-aad2-a9833d5d45d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/task_two/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task_two/tests/t_input.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task_two/tests/test.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task_two/tests/test_nest_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nest.db" beforeDir="false" afterPath="$PROJECT_DIR$/nest.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nest_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/nest_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task_two/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/task_two/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task_two/processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/task_two/processor.py" afterDir="false" />
-    </list>
+    <list default="true" id="a492d182-89c8-4610-aad2-a9833d5d45d4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,8 +84,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/task_two/app.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="106">
-                  <caret line="51" column="66" selection-start-line="51" selection-start-column="66" selection-end-line="51" selection-end-column="66" />
+                <state relative-caret-position="108">
+                  <caret line="51" column="69" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="69" />
                   <folding>
                     <element signature="e#0#23#0" expanded="true" />
                   </folding>
@@ -141,7 +131,7 @@
             <entry file="file://$PROJECT_DIR$/task_two/tests/test_nest_app.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="567">
-                  <caret line="84" column="29" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
+                  <caret line="84" column="30" lean-forward="true" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
@@ -258,6 +248,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/task_two/tests" />
@@ -363,17 +354,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1564118458968</updated>
-      <workItem from="1564118461724" duration="29640000" />
+      <workItem from="1564118461724" duration="29865000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_in_test_nest_app_py - 2019.07.28 at 21h 53m 31s.xml">
-      <configuration name="pytest in test_nest_app.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_nest_app_py - 2019.07.28 at 21h 54m 34s.xml">
-      <configuration name="pytest in test_nest_app.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="pytest_in_test_nest_app_py - 2019.07.28 at 21h 55m 04s.xml">
       <configuration name="pytest in test_nest_app.py" configurationId="tests" />
     </history-entry>
@@ -398,9 +383,15 @@
     <history-entry file="pytest_in_test_nest_app_py - 2019.07.28 at 22h 08m 58s.xml">
       <configuration name="pytest in test_nest_app.py" configurationId="tests" />
     </history-entry>
+    <history-entry file="pytest_in_test_nest_app_py - 2019.07.28 at 22h 09m 53s.xml">
+      <configuration name="pytest in test_nest_app.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_nest_app_py - 2019.07.28 at 22h 13m 18s.xml">
+      <configuration name="pytest in test_nest_app.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29640000" />
+    <option name="totallyTimeSpent" value="29865000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="0" width="1920" height="1080" extended-state="0" />
@@ -460,7 +451,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/flask_restful$pytest_for_test_nest_app_test_empty_db.coverage" NAME="pytest for test_nest_app.test_empty_db Coverage Results" MODIFIED="1564338038611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/task_two/tests" />
-    <SUITE FILE_PATH="coverage/flask_restful$pytest_in_test_nest_app_py.coverage" NAME="pytest in test_nest_app.py Coverage Results" MODIFIED="1564348136473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flask_restful$pytest_in_test_nest_app_py.coverage" NAME="pytest in test_nest_app.py Coverage Results" MODIFIED="1564348395715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/flask_restful$Flask__nest_app_py_.coverage" NAME="Flask (task_two/app.py) Coverage Results" MODIFIED="1564347956347" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
@@ -585,7 +576,7 @@
     <entry file="file://$PROJECT_DIR$/task_two/tests/test_nest_app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="567">
-          <caret line="84" column="29" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
+          <caret line="84" column="30" lean-forward="true" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -594,8 +585,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/task_two/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="51" column="66" selection-start-line="51" selection-start-column="66" selection-end-line="51" selection-end-column="66" />
+        <state relative-caret-position="108">
+          <caret line="51" column="69" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="69" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
