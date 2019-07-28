@@ -5,7 +5,7 @@ import json
 class Nester:
 
     def __init__(self, input, order):
-        self.input = json.loads(input)
+        self.input = input
         self.order = order
 
     def nest_flat_dict(self):
@@ -22,10 +22,11 @@ class Nester:
             # Generate the branches
             create_nested_tree(root, path_list)
 
-            # Populate the last element
-            set_nested_value(d=root, keys=path_list, value=leaf)
-
-        root = json.dumps(root)
+            try:
+                # Populate the last element
+                set_nested_value(d=root, keys=path_list, value=leaf)
+            except KeyError:
+                raise
 
         return root
 

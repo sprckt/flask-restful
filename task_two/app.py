@@ -1,34 +1,46 @@
-from flask import Flask, jsonify
+from flask import Flask
 from task_two.config import Config
-from flask_restful import Resource, Api
+from flask_restful import Resource, Api, abort
 from flask_restful.reqparse import RequestParser
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 import json
-import sqlite3
 import os
-import datetime
+from task_two.processor import Nester
 
 # App, DB setup
-app = Flask(__name__)
-app.config.from_object(Config)
+def create_app(test_config=None):
+    app = Flask(__name__)
+    app.config.from_object(Config)
+
+
+    if test_config is None:
+        # load the instance config, if it exists, when not testing
+        app.config.from_pyfile('config.py', silent=True)
+    else:
+        # load the test config if passed in
+        app.config.from_mapping(test_config)
+
+    # ensure the instance folder exists
+    try:
+        os.makedirs(app.instance_path)
+    except OSError:
+        pass
+
+
+    return app
+
+# Instantiate service
+app = create_app()
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-api = Api(app, prefix='/api/v1')
+api = Api(app)
 auth = HTTPBasicAuth()
 
 # Import models
 from task_two.models import User
 
-
-
-# Test users
-users = [
-    {"name": "eric", "email": "e@dev.com", "id": 0},
-    {"name": "anne", "email": "a@dev.com", "id": 1}
-]
 
 # Request parsing
 user_parser = RequestParser(bundle_errors=True)
@@ -37,35 +49,43 @@ user_parser.add_argument("email", type=str, required=True, help="Any email will 
 
 # Flat Dict
 dict_payload = RequestParser(bundle_errors=True)
-dict_payload.add_argument("data", type=str, location="form", help='Send flat dict as "data: [{}, {}]"')
+dict_payload.add_argument("flat", location=["form", "json", "files"], help='Send flat dict as "data: [{}, {}]"')
 dict_payload.add_argument("order", action="append")
 
 # Endpoints
 class AllUsers(Resource):
     def get(self):
-        payload = users
-        return {"All users": payload}
+        users = db.session.query(User).all()
+        users = [u.email for u in users]
+        print(users)
+        return {"All users": users}
 
-    def post(self):
-        args = user_parser.parse_args()
-        users.append(args)
-        print(f"Post method: {args}")
-        return {"Created": f"{args}"}
 
 class Nest(Resource):
 
-    # @auth.login_required
+    @auth.login_required
     def post(self):
 
         args = dict_payload.parse_args()
-        data = args.get("data")
+        data = args.get("flat")
+
+        key_order = args.get("order")
         if data:
-            data = json.loads(args["data"])
+            data = json.loads(args["flat"])
+            print(f"Data for app: {data}")
+        else:
+            abort(400, message='No data provided')
 
+        nested = Nester(input=data, order=key_order)
 
+        try:
+            nested = nested.nest_flat_dict()
+        except KeyError:
+            abort(422, messsage="Key in ordered list not found in flat dict")
 
         return {"data": data,
-                "order": args.get("order")}
+                "order": key_order,
+                "nested_dict": nested}
 
 class CreateUser(Resource):
     def post(self):
@@ -85,39 +105,6 @@ class CreateUser(Resource):
         else:
             return {"User already exists"}
 
-
-
-
-class AUser(Resource):
-
-    def get(self, id):
-        rec = [user for user in users if user['id'] == id]
-
-        if not rec:
-            return {"error": "No user found"}
-
-        return {"User details": rec[0]}
-
-    def put(self, id):
-        args = user_parser.parse_args()
-        user = [user for user in users if user['id'] == id]
-
-        print(user)
-
-        if user:
-            users.remove(user[0])
-            users.append(args)
-
-        return {"Updated": f"{args}"}
-
-    def delete(self, id):
-        user = [user for user in users if user['id'] == id]
-
-        if user:
-            users.remove(user[0])
-
-        return {"Deleted": f"User id {id}"}
-
 # Verify
 @auth.verify_password
 def verify(email, password):
@@ -127,10 +114,10 @@ def verify(email, password):
     return False
 
 api.add_resource(AllUsers, '/')
-api.add_resource(AUser, '/user/<int:id>')
 api.add_resource(Nest, '/nest')
 api.add_resource(CreateUser, '/auth')
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+    print('Running MAIN')
