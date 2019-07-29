@@ -1,1 +1,2 @@
-FLASK_APP=nest_app.py
+FLASK_APP=task_two/app.py
+FLASK_ENV=prod

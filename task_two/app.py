@@ -52,17 +52,23 @@ dict_payload = RequestParser(bundle_errors=True)
 dict_payload.add_argument("flat", location=["form", "json", "files"], help='Send flat dict as "data: [{}, {}]"')
 dict_payload.add_argument("order", action="append")
 
+
 # Endpoints
+class Home(Resource):
+
+    def get(self):
+        return {"Welcome": "To the FlatDict to Nested Dict Converter WebApp"}
+
+
 class AllUsers(Resource):
+
     def get(self):
         users = db.session.query(User).all()
         users = [u.email for u in users]
-        print(users)
         return {"All users": users}
 
 
 class Nest(Resource):
-
     @auth.login_required
     def post(self):
 
@@ -72,7 +78,6 @@ class Nest(Resource):
         key_order = args.get("order")
         if data:
             data = json.loads(args["flat"])
-            print(f"Data for app: {data}")
         else:
             abort(400, message='No data provided')
 
@@ -83,11 +88,11 @@ class Nest(Resource):
         except KeyError:
             abort(422, messsage="Key in ordered list not found in flat dict")
 
-        return {"data": data,
-                "order": key_order,
-                "nested_dict": nested}
+        return {"nested": nested}
+
 
 class CreateUser(Resource):
+    @auth.login_required
     def post(self):
         creds = user_parser.parse_args()
         email = creds['email']
@@ -105,7 +110,8 @@ class CreateUser(Resource):
         else:
             return {"User already exists"}
 
-# Verify
+
+# Verification function
 @auth.verify_password
 def verify(email, password):
     user = db.session.query(User).filter(User.email == email).one_or_none()
@@ -113,11 +119,13 @@ def verify(email, password):
         return  check_password_hash(user.password_hash, password)
     return False
 
-api.add_resource(AllUsers, '/')
-api.add_resource(Nest, '/nest')
-api.add_resource(CreateUser, '/auth')
+
+# Add resources to the API
+api.add_resource(Home, '/')
+api.add_resource(AllUsers, '/users/')
+api.add_resource(Nest, '/nest/')
+api.add_resource(CreateUser, '/auth/')
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-    print('Running MAIN')
